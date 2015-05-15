@@ -1,0 +1,103 @@
+<!DOCTYPE = html>
+<!--  // Jason E Anderson, ja@adadu.com, May 15 2015
+      // CodeFellows, HW5 Donut Shop -->
+<html>
+  <head>
+    <title>Donut Shop</title>
+    <link rel="stylesheet" type="text/css" href="hw5-donut.css">
+    <link href="http://fonts.googleapis.com/css?family=Raleway:400,700" rel="stylesheet" type="text/css">
+  </head>
+  <body>
+    <div id="wrapper">
+      <h1>Donut Shop</h1>
+      <div class="center">
+        <img src="http://41.media.tumblr.com/tumblr_m2vzrqDR9N1r8swmoo1_1280.png"  width="565" height="418" alt="Twin Peaks Donuts" />
+      </div>
+      <h2>Donut Shop Manager View</h2>
+      <table id="donutTable">
+        <tbody>
+          <tr>
+            <th class="italBlue">Shop Location</th>
+            <th>Shop Hours</th>
+            <th>Donuts Per Hour</th>
+            <th>Donuts Per Day</th>
+          </tr>
+
+            <script type="text/javascript">
+
+              var DonutShop = function(l, h, mn, mx, d) {
+                this.locationName = l;
+                this.hoursOfOperation = h;
+                this.minCustomers = mn;
+                this.maxCustomers = mx;
+                this.averageDonutsHr = d;
+
+                this.shopLocation = function() {
+                  return l;
+                };
+
+                this.shopHours = function() {
+                  return h;
+                };
+
+                this.getDonutsPerHour = function() {
+                  return Math.floor(this.calc() * d);
+                };
+
+                this.getDonutsPerDay = function() {
+                  return (this.getDonutsPerHour() * h);
+                };
+
+                this.calc = function() {
+                var range = mx - mn + 1;
+                var random = Math.floor(Math.random() + mn);
+                  return random;
+                  };
+              };
+
+              function DonutMaster() {
+                this.shopList = [];
+
+                this.addShop = function(addName) {
+                  return this.shopList.push(addName);
+                };
+
+                /*
+                this.generateReport = function() {
+                  for (var i = 0; i < this.shopList.length; i++) {
+                    console.log("The " + this.shopList[i].shopLocation()
+                      + " location needs to bake " + this.shopList[i].getDonutsPerHour()
+                      + " per hour AND " + this.shopList[i].getDonutsPerDay()
+                      + " per day. They are open " + this.shopList[i].shopHours()
+                      + " hours per day.");
+                  }
+                */
+
+                this.generateReport = function() {
+                  for (var i = 0; i < this.shopList.length; i++) {
+                    document.write("<tr><th>" + this.shopList[i].shopLocation() + "</th><td>" + this.shopList[i].shopHours() + "</td><td>" + this.shopList[i].getDonutsPerHour() + "</td><td>" + this.shopList[i].getDonutsPerDay() + "</td></tr>");
+                  }
+                };
+              }
+
+              var donutMaster = new DonutMaster();
+
+              var dT = new DonutShop("Downtown", 16, 8, 43, 4.5);
+              var cH = new DonutShop("Captiol Hill", 19, 4, 37, 2);
+              var sLU = new DonutShop("South Lake Union", 14, 9, 23, 6.33);
+              var we = new DonutShop("Wedgewood", 14, 2, 28, 1.25);
+              var ba = new DonutShop("Ballard", 14, 8, 58, 3.75);
+
+              donutMaster.addShop(dT);
+              donutMaster.addShop(cH);
+              donutMaster.addShop(sLU);
+              donutMaster.addShop(we);
+              donutMaster.addShop(ba);
+              donutMaster.generateReport();
+
+            </script>
+        </tbody>
+      </table>
+    </div>
+  </body>
+</html>
