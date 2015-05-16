@@ -4,8 +4,8 @@
 <html>
   <head>
     <title>Donut Shop</title>
-    <link rel="stylesheet" type="text/css" href="hw5-donut.css">
-    <link href="http://fonts.googleapis.com/css?family=Raleway:400,700" rel="stylesheet" type="text/css">
+    <link rel="stylesheet" type="text/css" href="hw5-donut.css" />
+    <link href="http://fonts.googleapis.com/css?family=Raleway:400,700" rel="stylesheet" type="text/css" />
   </head>
   <body>
     <div id="wrapper">
@@ -31,6 +31,7 @@
                 this.minCustomers = mn;
                 this.maxCustomers = mx;
                 this.averageDonutsHr = d;
+                this.rand = Math.random();
 
                 this.shopLocation = function() {
                   return l;
@@ -41,18 +42,19 @@
                 };
 
                 this.getDonutsPerHour = function() {
-                  return Math.floor(this.calc() * d);
+                  var hr = Math.floor(this.calc() * d);
+                  return hr;
                 };
 
                 this.getDonutsPerDay = function() {
-                  return (this.getDonutsPerHour() * h);
+                  var day = Math.floor(this.getDonutsPerHour() * h);
+                  return day;
                 };
 
                 this.calc = function() {
-                var range = mx - mn + 1;
-                var random = Math.floor(Math.random() + mn);
+                  var random = (this.rand * mx - mn + 1) + mn;
                   return random;
-                  };
+                };
               };
 
               function DonutMaster() {
@@ -71,7 +73,7 @@
                       + " per day. They are open " + this.shopList[i].shopHours()
                       + " hours per day.");
                   }
-                */
+                  */
 
                 this.generateReport = function() {
                   for (var i = 0; i < this.shopList.length; i++) {
